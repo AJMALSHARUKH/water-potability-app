@@ -6,12 +6,16 @@ import matplotlib.pyplot as plt
 import sqlite3
 import bcrypt
 import chartmogul
+import os  # Add this import
 
 # Set API Key
 CHARTMOGUL_API_KEY = "YOUR_API_KEY"
 chartmogul.Config.api_key = CHARTMOGUL_API_KEY
 
 st.set_page_config(page_title="Water Potability Classification", layout="wide")
+
+# Force Streamlit to use Render's assigned port
+port = int(os.environ.get("PORT", 8501))
 
 # Database functions
 def create_db():
@@ -339,3 +343,7 @@ elif page == "📞 Contact Us":
     st.markdown("**Address:** <span style='font-size:20px; color:green;'>Dubai Kurukku Sandhu, Dubai City, Dubai</span>", unsafe_allow_html=True)
 
 st.markdown("</div>", unsafe_allow_html=True)
+
+# Run the app on the correct port
+if __name__ == "__main__":
+    st.run(port=port)
